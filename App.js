@@ -1,6 +1,6 @@
 
 import react, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
 
 export default function App() {
 
@@ -14,6 +14,13 @@ export default function App() {
     {name: 'bowser', id: '7' },
   ])
 
+  const pressHandler = (id) => {
+    console.log(id)
+    setPeople((prevPeople) => {
+      return prevPeople.filter(person => person.id != id)
+    })
+  }
+
   return (
     <View style={styles.container}>
       
@@ -22,17 +29,11 @@ export default function App() {
         numColumns={2} // this line needs to come after keyExtractor to prevent getting error
         data = {people} 
         renderItem={({ item }) => (
-          <Text style={styles.item}>{item.name}</Text>
+          <TouchableOpacity onPress={() => pressHandler(item.id)}>
+            <Text style={styles.item}>{item.name}</Text>
+          </TouchableOpacity>
         )}
       />
-
-      {/* <ScrollView>
-        { people.map(item => (
-            <View key = {item.key}>
-              <Text style={styles.item}>{item.name}</Text>
-            </View>
-        ))}
-      </ScrollView> */}
 
     </View>
   );
