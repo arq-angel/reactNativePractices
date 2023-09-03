@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 40,
-    backgroundColor: 'pink',
     flex: 1,
   },
   list: {
